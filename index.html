@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hasanul Banna Sifat — Python Backend Engineer</title>
+<meta name="description" content="Python backend engineer building secure, relational REST APIs with FastAPI, PostgreSQL and SQLAlchemy. Live Aviation Booking API in production. Open to junior backend roles, internships and remote contract work.">
+<meta name="theme-color" content="#070b14">
+<meta property="og:title" content="Hasanul Banna Sifat — Python Backend Engineer">
+<meta property="og:description" content="FastAPI · PostgreSQL · SQLAlchemy. Flagship Aviation Booking API live in production.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2334d399'/%3E%3Cstop offset='1' stop-color='%2360a5fa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='%23070b14'/%3E%3Ctext x='16' y='21.5' font-family='monospace' font-size='14' font-weight='700' fill='url(%23g)' text-anchor='middle'%3E%7B%7D%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Hasanul Banna Sifat","jobTitle":"Python Backend Engineer","email":"mailto:hbanna044@gmail.com","sameAs":["https://github.com/sifat-dev-code","https://www.linkedin.com/in/hasanul-banna-sifat-483908433"]}
+</script>
+<style>
+:root{
+  --bg:#070b14;
+  --bg-2:#0a101c;
+  --card-solid:#0c1322;
+  --line:#1f2937;
+  --line-hi:rgba(148,163,184,.24);
+  --text:#eef2f7;
+  --muted:#9aa7b8;
+  --dim:#66758a;
+  --g1:#34d399;
+  --g2:#22d3ee;
+  --g3:#60a5fa;
+  --warn:#f59e0b;
+  --err:#f87171;
+  --grad:linear-gradient(110deg,#34d399 0%,#22d3ee 48%,#60a5fa 100%);
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%;scrollbar-width:thin;scrollbar-color:#243044 var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:rgba(34,211,238,.3)}
+:focus-visible{outline:2px solid var(--g2);outline-offset:3px;border-radius:6px}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#1f2937;border:2px solid var(--bg);border-radius:999px}
+::-webkit-scrollbar-thumb:hover{background:#334155}
+
+/* ambient background */
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(700px 420px at 12% -4%,rgba(52,211,153,.13),transparent 70%),
+    radial-gradient(760px 460px at 92% 2%,rgba(96,165,250,.15),transparent 70%),
+    radial-gradient(900px 500px at 50% 110%,rgba(34,211,238,.07),transparent 70%)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(to right,rgba(255,255,255,.024) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.024) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 75% 55% at 50% 0%,#000 0%,transparent 78%);
+  mask-image:radial-gradient(ellipse 75% 55% at 50% 0%,#000 0%,transparent 78%)}
+
+.wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+.mono{font-family:var(--mono)}
+.gt{background:var(--grad);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shine 9s linear infinite}
+@keyframes shine{to{background-position:200% center}}
+
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;right:0;height:2px;z-index:200;transform-origin:0 50%;transform:scaleX(0);background:var(--grad)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;border-bottom:1px solid transparent;transition:background .3s,border-color .3s,backdrop-filter .3s}
+.nav.scrolled{background:rgba(7,11,20,.78);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom-color:var(--line)}
+.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;font-size:15px}
+.logo .mark{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--bg);background:var(--grad)}
+.links{display:flex;gap:4px;font-size:14px}
+.links a{position:relative;padding:8px 13px;color:var(--muted);border-radius:8px;transition:color .2s,background .2s}
+.links a:hover{color:var(--text);background:rgba(255,255,255,.04)}
+.links a.active{color:var(--text)}
+.links a.active::after{content:"";position:absolute;left:14px;right:14px;bottom:3px;height:2px;border-radius:2px;background:var(--grad)}
+.nav-r{display:flex;align-items:center;gap:10px}
+.burger{display:none;width:40px;height:40px;border:1px solid var(--line);border-radius:10px;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.burger i{display:block;width:16px;height:1.5px;background:var(--text);transition:transform .25s,opacity .25s}
+.burger.open i:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+.burger.open i:nth-child(2){opacity:0}
+.burger.open i:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+.mmenu{position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(7,11,20,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:10px 24px 20px;display:none;flex-direction:column}
+.mmenu.open{display:flex}
+.mmenu a{padding:14px 4px;border-bottom:1px solid var(--line);color:var(--muted);font-size:16px}
+.mmenu a:last-child{border-bottom:0}
+
+/* ---------- buttons / pills ---------- */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:600;font-size:14.5px;line-height:1;padding:13px 20px;border-radius:12px;border:1px solid var(--line-hi);background:rgba(255,255,255,.03);color:var(--text);transition:transform .25s var(--ease),border-color .25s,background .25s,box-shadow .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px);border-color:rgba(148,163,184,.45);background:rgba(255,255,255,.06)}
+.btn:active{transform:translateY(0)}
+.btn .arr{font-family:var(--mono);transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translate(2px,-2px)}
+.btn.primary{color:#04101a;border-color:transparent;background:var(--grad);background-size:160% auto;background-position:0 50%;box-shadow:0 10px 30px -12px rgba(34,211,238,.55)}
+.btn.primary:hover{background-position:100% 50%;box-shadow:0 14px 36px -12px rgba(34,211,238,.7);border-color:transparent}
+.btn.sm{padding:9px 14px;font-size:13.5px;border-radius:10px}
+
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;border:1px solid var(--line);border-radius:999px;padding:6px 13px 6px 11px;background:rgba(255,255,255,.025);color:var(--muted);transition:border-color .2s,color .2s;white-space:nowrap}
+.status:hover{border-color:var(--line-hi);color:var(--text)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--warn);flex:none}
+.status[data-state="ok"] .dot{background:var(--g1);box-shadow:0 0 0 3px rgba(52,211,153,.18)}
+.status[data-state="wait"] .dot{animation:pulse 1.4s ease-in-out infinite}
+.status[data-state="err"] .dot{background:var(--err)}
+.status[data-state="ok"] .st-code{color:var(--g1)}
+.status[data-state="wait"] .st-code{color:var(--warn)}
+.status[data-state="err"] .st-code{color:var(--err)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ---------- section scaffolding ---------- */
+section{padding:112px 0 0;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.eyebrow .m{font-weight:600;font-size:11px;letter-spacing:.06em;padding:2px 8px;border-radius:6px;border:1px solid rgba(52,211,153,.35);color:var(--g1);background:rgba(52,211,153,.07)}
+.eyebrow .m.post{border-color:rgba(96,165,250,.4);color:var(--g3);background:rgba(96,165,250,.08)}
+h2.title{font-size:clamp(28px,3.6vw,42px);line-height:1.12;letter-spacing:-.03em;font-weight:700;max-width:22ch}
+p.sub{color:var(--muted);font-size:17px;max-width:60ch;margin-top:14px}
+.sec-head{margin-bottom:44px}
+
+/* cards */
+.card{position:relative;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.012));overflow:hidden;transition:translate .35s var(--ease),border-color .3s,box-shadow .3s}
+.card::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(460px circle at var(--mx,50%) var(--my,0%),rgba(34,211,238,.10),transparent 62%)}
+.card:hover{translate:0 -4px;border-color:var(--line-hi);box-shadow:0 26px 56px -30px rgba(0,0,0,.9)}
+.card:hover::after{opacity:1}
+.gb::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:1;
+  background:linear-gradient(150deg,rgba(52,211,153,.75),rgba(34,211,238,.14) 36%,rgba(96,165,250,.6));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+
+.chip{display:inline-flex;align-items:center;font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:4px 10px;background:rgba(255,255,255,.025);transition:color .2s,border-color .2s,background .2s}
+.chip:hover{color:var(--text);border-color:rgba(34,211,238,.4);background:rgba(34,211,238,.06)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ---------- hero ---------- */
+.hero{padding-top:148px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:64px;align-items:center}
+.avail{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:7px 15px 7px 12px;background:rgba(255,255,255,.025);margin-bottom:26px}
+.avail i{width:7px;height:7px;border-radius:50%;background:var(--g1);box-shadow:0 0 0 4px rgba(52,211,153,.16);animation:pulse 2.4s ease-in-out infinite}
+.hello{font-family:var(--mono);font-size:14px;color:var(--g2);margin-bottom:12px}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.03;letter-spacing:-.045em;font-weight:800}
+h1 .role{display:block;font-size:clamp(22px,2.6vw,30px);letter-spacing:-.02em;font-weight:600;color:var(--muted);margin-top:16px}
+.hero p.lead{font-size:18px;color:var(--muted);max-width:56ch;margin-top:22px}
+.hero p.lead b{color:var(--text);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.socials{display:flex;gap:10px;margin-top:30px}
+.socials a{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;border:1px solid var(--line);color:var(--muted);font-family:var(--mono);font-size:12px;font-weight:600;transition:color .2s,border-color .2s,transform .25s var(--ease),background .2s}
+.socials a:hover{color:var(--text);border-color:var(--line-hi);transform:translateY(-3px);background:rgba(255,255,255,.04)}
+
+.photo{position:relative;max-width:380px;margin-inline:auto;width:100%}
+.photo::before{content:"";position:absolute;inset:8% -12% -10% -12%;z-index:-1;background:radial-gradient(closest-side,rgba(34,211,238,.22),transparent 72%);filter:blur(14px)}
+.pframe{padding:1px;border-radius:24px;background:linear-gradient(160deg,rgba(52,211,153,.8),rgba(34,211,238,.22) 42%,rgba(96,165,250,.7));box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
+.pin{position:relative;border-radius:23px;background:var(--bg-2);overflow:hidden;aspect-ratio:4/5}
+.pin img{width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;transition:transform 1s var(--ease)}
+.photo:hover .pin img{transform:scale(1.03)}
+.pin::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 62%,rgba(7,11,20,.55))}
+.pin .fallback{position:absolute;inset:0;display:none;flex-direction:column;gap:10px;align-items:center;justify-content:center;font-family:var(--mono);font-size:54px;font-weight:600;letter-spacing:.04em;color:var(--muted);background:repeating-linear-gradient(135deg,transparent 0 12px,rgba(255,255,255,.025) 12px 13px)}
+.pin .fallback small{font-size:11px;font-weight:400;color:var(--dim)}
+.photo.noimg .fallback{display:flex}
+.photo.noimg img{display:none}
+.fchip{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;border:1px solid var(--line-hi);background:rgba(10,16,28,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:14px;padding:9px 13px;font-family:var(--mono);font-size:12px;color:var(--muted);box-shadow:0 16px 34px -16px rgba(0,0,0,.9)}
+.fchip.a{left:-22px;bottom:34px;animation:float 7s ease-in-out infinite}
+.fchip.b{right:-18px;top:30px;animation:float 8s ease-in-out -3s infinite}
+.fchip b{color:var(--text);font-weight:600}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+
+/* marquee */
+.marq{margin-top:84px;border-block:1px solid var(--line);overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marq-track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.marq:hover .marq-track{animation-play-state:paused}
+.marq-track span{font-family:var(--mono);font-size:13.5px;color:var(--dim);padding:20px 28px;white-space:nowrap;display:flex;align-items:center;gap:28px}
+.marq-track span::after{content:"";width:4px;height:4px;border-radius:50%;background:var(--line-hi)}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:start}
+.prose p{color:var(--muted);font-size:17px;margin-bottom:18px}
+.prose p b{color:var(--text);font-weight:600}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+.stat{padding:18px 18px 16px}
+.stat .n{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+.term{border-radius:16px;border:1px solid var(--line);background:#060a12;overflow:hidden;box-shadow:0 30px 60px -34px rgba(0,0,0,.9)}
+.term-bar{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.025)}
+.term-bar i{width:10px;height:10px;border-radius:50%;background:#1f2937}
+.term-bar span{margin-left:10px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+.term-body{padding:20px 22px 24px;font-family:var(--mono);font-size:13.5px;line-height:1.85;min-height:290px;color:#cbd5e1}
+.term-body .p{color:var(--g1)}
+.term-body .o{color:var(--muted);display:block;margin-bottom:8px;opacity:0;animation:fadein .5s forwards}
+.term-body .cur{display:inline-block;width:8px;height:15px;background:var(--g2);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@keyframes fadein{to{opacity:1}}
+
+/* ---------- projects ---------- */
+.proj{display:block;margin-bottom:26px}
+.proj-in{padding:34px 36px 36px;position:relative;z-index:2}
+.proj-top{display:flex;flex-wrap:wrap;gap:14px 18px;align-items:flex-start;justify-content:space-between}
+.proj-title{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.proj h3{font-size:clamp(22px,2.4vw,28px);letter-spacing:-.025em;font-weight:700;line-height:1.2}
+.badge{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.05em;border:1px solid var(--line-hi);border-radius:999px;padding:4px 11px;color:var(--muted);white-space:nowrap}
+.badge.live{color:var(--g1);border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.07)}
+.proj-actions{display:flex;gap:10px;flex-wrap:wrap}
+.proj p.desc{color:var(--muted);max-width:68ch;margin:14px 0 26px;font-size:16.5px}
+.hl{list-style:none;display:grid;gap:12px;margin:28px 0}
+.hl li{display:grid;grid-template-columns:22px 1fr;gap:8px;color:#cbd5e1;font-size:15.5px}
+.hl li::before{content:"";width:7px;height:7px;margin-top:9px;border-radius:2px;background:var(--grad);transform:rotate(45deg)}
+
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 0;margin:4px 0 6px}
+.fnode{font-family:var(--mono);font-size:12px;line-height:1.35;border:1px solid var(--line-hi);background:rgba(255,255,255,.03);border-radius:10px;padding:9px 13px;color:var(--text);transition:border-color .25s,transform .25s var(--ease)}
+.fnode:hover{border-color:rgba(34,211,238,.55);transform:translateY(-2px)}
+.fnode small{display:block;color:var(--dim);font-size:10.5px}
+.wire{position:relative;width:38px;height:1px;background:var(--line-hi);margin:0 3px}
+.wire i{position:absolute;top:-2px;left:0;width:5px;height:5px;border-radius:50%;background:var(--g2);box-shadow:0 0 10px var(--g2);animation:pkt 2.4s linear infinite;animation-delay:var(--d,0s)}
+@keyframes pkt{0%{left:0;opacity:0}15%{opacity:1}85%{opacity:1}100%{left:calc(100% - 5px);opacity:0}}
+
+.console{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#060a12}
+.con-tabs{display:flex;overflow-x:auto;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02);scrollbar-width:none}
+.con-tabs::-webkit-scrollbar{display:none}
+.con-tab{display:flex;align-items:center;gap:8px;padding:12px 16px;font-family:var(--mono);font-size:12px;color:var(--dim);white-space:nowrap;position:relative;transition:color .2s,background .2s}
+.con-tab b{font-size:10px;letter-spacing:.06em}
+.con-tab[data-m="POST"] b{color:var(--g1)}
+.con-tab[data-m="PUT"] b{color:var(--warn)}
+.con-tab[data-m="GET"] b{color:var(--g3)}
+.con-tab:hover{color:var(--text)}
+.con-tab[aria-selected="true"]{color:var(--text);background:rgba(255,255,255,.03)}
+.con-tab[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--grad)}
+.con-grid{display:grid;grid-template-columns:1fr 1fr}
+.con-pane{min-width:0}
+.con-pane+.con-pane{border-left:1px solid var(--line)}
+.pane-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--dim);text-transform:uppercase;min-height:46px}
+.acts{display:flex;gap:6px;align-items:center}
+.mini{font-family:var(--mono);font-size:11.5px;text-transform:none;letter-spacing:0;color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:4px 10px;background:rgba(255,255,255,.03);transition:color .2s,border-color .2s,background .2s}
+.mini:hover{color:var(--text);border-color:var(--line-hi)}
+.mini.send{color:#04101a;background:var(--grad);border-color:transparent;font-weight:700}
+.rchip{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:0;text-transform:none;border:1px solid var(--line);border-radius:6px;padding:1px 8px;line-height:20px;white-space:nowrap}
+.rchip.ok{color:var(--g1);border-color:rgba(52,211,153,.4)}
+.rchip.err{color:var(--err);border-color:rgba(248,113,113,.4)}
+.rchip.sim{color:var(--dim)}
+pre{font-family:var(--mono);font-size:12.5px;line-height:1.75;padding:18px 20px;overflow-x:auto;color:#cbd5e1;min-height:196px}
+.j-k{color:#7dd3fc}.j-s{color:#86efac}.j-n{color:#fcd34d}.j-b{color:#fca5a5}
+.c-cmd{color:#e2e8f0}.c-flag{color:#94a3b8}.c-url{color:#86efac}
+.con-foot{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;padding:11px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--dim);background:rgba(255,255,255,.02)}
+.con-foot a{color:var(--text);border-bottom:1px solid var(--line-hi);transition:border-color .2s}
+.con-foot a:hover{border-color:var(--g2)}
+
+.proj-grid{display:grid;grid-template-columns:1fr;gap:26px}
+.sec-proj{padding:30px 34px 32px;position:relative;z-index:2}
+.more{display:flex;align-items:center;gap:18px;border:1px dashed var(--line-hi);border-radius:16px;padding:18px 24px;color:var(--muted);transition:border-color .3s,background .3s,translate .3s var(--ease)}
+.more:hover{border-color:rgba(34,211,238,.5);background:rgba(34,211,238,.04);translate:0 -3px}
+.more .k{font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--dim)}
+.more .v{flex:1;color:var(--text);font-size:15.5px;font-weight:500}
+.more .v small{font-family:var(--mono);font-size:12px;color:var(--dim);margin-left:10px;font-weight:400}
+.more .arr{font-family:var(--mono);color:var(--dim);transition:transform .25s var(--ease),color .2s}
+.more:hover .arr{transform:translate(3px,-3px);color:var(--g2)}
+
+/* ---------- stack ---------- */
+.stack{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.grp{padding:26px 26px 28px;grid-column:span 2}
+.grp.w3{grid-column:span 3}
+.grp .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:600;color:var(--g2);border:1px solid rgba(34,211,238,.28);background:rgba(34,211,238,.07);margin-bottom:18px}
+.grp h3{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
+.grp .d{font-size:13.5px;color:var(--dim);margin-bottom:18px}
+
+/* ---------- timeline ---------- */
+.xp-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px;align-items:start}
+.tl{position:relative;padding-left:34px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--g1),var(--g3) 70%,transparent)}
+.tl-item{position:relative;padding-bottom:34px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:"";position:absolute;left:-34px;top:7px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--g2)}
+.tl-item.now::before{background:var(--g1);border-color:var(--g1);box-shadow:0 0 0 5px rgba(52,211,153,.15)}
+.tl-when{font-family:var(--mono);font-size:12px;color:var(--g2);margin-bottom:4px}
+.tl-item h3{font-size:19px;letter-spacing:-.02em;font-weight:650;line-height:1.3}
+.tl-item h3 span{color:var(--muted);font-weight:400}
+.tl-item p{color:var(--muted);font-size:15.5px;margin-top:8px;max-width:58ch}
+.side{display:grid;gap:18px}
+.mini-card{padding:22px 24px}
+.mini-card .k{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
+.mini-card h4{font-size:16px;font-weight:600;letter-spacing:-.01em;line-height:1.4}
+.mini-card p{color:var(--muted);font-size:14.5px;margin-top:3px}
+.now-card{padding:22px 24px;border-color:rgba(245,158,11,.3);background:linear-gradient(180deg,rgba(245,158,11,.07),rgba(245,158,11,.015))}
+.now-card .k{color:var(--warn)}
+.now-card p{color:#d6dbe4}
+
+/* ---------- contact ---------- */
+.cta-card{border-radius:26px;padding:56px 48px;border:1px solid var(--line);position:relative;overflow:hidden;
+  background:radial-gradient(620px 260px at 12% 0%,rgba(52,211,153,.16),transparent 70%),radial-gradient(640px 280px at 92% 100%,rgba(96,165,250,.18),transparent 70%),var(--card-solid)}
+.cta-card h2{font-size:clamp(30px,4.2vw,50px);line-height:1.08;letter-spacing:-.035em;font-weight:700;max-width:18ch}
+.cta-card p{color:var(--muted);font-size:17px;max-width:54ch;margin-top:16px}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+.cbtn{display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line-hi);border-radius:14px;padding:15px 18px;background:rgba(7,11,20,.55);backdrop-filter:blur(6px);transition:transform .25s var(--ease),border-color .25s,background .25s;min-width:0;text-align:left}
+.cbtn:hover{transform:translateY(-3px);border-color:rgba(34,211,238,.5);background:rgba(7,11,20,.8)}
+.cbtn .c-l{min-width:0}
+.cbtn .c-k{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;color:var(--dim);text-transform:uppercase}
+.cbtn .c-v{display:block;font-size:14.5px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cbtn .arr{font-family:var(--mono);color:var(--dim);flex:none;transition:transform .25s var(--ease),color .2s}
+.cbtn:hover .arr{transform:translate(2px,-2px);color:var(--g2)}
+.cbtn.copy .c-act{font-family:var(--mono);font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:3px 10px;flex:none}
+.cbtn.copy.done .c-act{color:var(--g1);border-color:rgba(52,211,153,.4)}
+.cbtn.resume{grid-column:1 / -1;border-color:transparent;background:var(--grad);color:#04101a}
+.cbtn.resume:hover{background:var(--grad);filter:brightness(1.06);border-color:transparent}
+.cbtn.resume .c-k{color:rgba(4,16,26,.62)}
+.cbtn.resume .c-v{font-weight:700;font-size:16px}
+.cbtn.resume .arr{color:rgba(4,16,26,.7)}
+.cbtn.resume:hover .arr{color:#04101a}
+.loc{margin-top:22px;font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+
+footer{padding:64px 0 48px;color:var(--dim);font-family:var(--mono);font-size:12.5px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px;border-top:1px solid var(--line);padding-top:26px}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .links,.nav-r .status,.nav-r .btn{display:none}
+  .burger{display:flex}
+  .hero{padding-top:120px}
+  .hero-grid{grid-template-columns:1fr;gap:56px}
+  .photo{max-width:320px;order:-1;margin-inline:0}
+  .about-grid,.xp-grid{grid-template-columns:1fr}
+  .stack{grid-template-columns:repeat(2,1fr)}
+  .grp,.grp.w3{grid-column:span 1}
+  .grp:last-child{grid-column:1 / -1}
+  .cgrid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:680px){
+  .wrap{width:calc(100% - 36px)}
+  section{padding-top:84px}
+  .con-grid{grid-template-columns:1fr}
+  .con-pane+.con-pane{border-left:0;border-top:1px solid var(--line)}
+  pre{min-height:0}
+  .proj-in,.sec-proj{padding:26px 22px 28px}
+  .stats{grid-template-columns:1fr}
+  .stack{grid-template-columns:1fr}
+  .grp:last-child{grid-column:auto}
+  .cgrid{grid-template-columns:1fr}
+  .cta-card{padding:38px 24px}
+  .wire{display:none}
+  .fnode{margin:0 8px 8px 0}
+  .more{flex-wrap:wrap;gap:6px 12px}
+  .more .v small{display:block;margin:3px 0 0}
+  .fchip.a{left:-6px}.fchip.b{right:-6px}
+  .cta .btn{flex:1 1 auto}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+  .marq-track{animation:none}
+}
+</style>
+</head>
+<body>
+
+<!--
+  ============================================================
+  PUT THESE TWO FILES IN THE SAME FOLDER AS index.html
+    ./profile.jpg                        (your photo)
+    ./Hasanul_Banna_Sifat_Resume.pdf     (your resume)
+  Optional: paste a base64 photo into PHOTO_B64 near the end of
+  this file to embed it directly (no separate image needed).
+  ============================================================
+-->
+
+<div class="progress" id="progress"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Hasanul Banna Sifat, home"><span class="mark">{}</span><span>Sifat</span></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#about" data-sec="about">About</a>
+      <a href="#projects" data-sec="projects">Projects</a>
+      <a href="#stack" data-sec="stack">Stack</a>
+      <a href="#experience" data-sec="experience">Experience</a>
+      <a href="#contact" data-sec="contact">Contact</a>
+    </nav>
+    <div class="nav-r">
+      <a class="status js-status" data-state="wait" href="https://aviation-booking-api-sifat.onrender.com/docs" target="_blank" rel="noopener" aria-live="polite" title="Live ping to the Aviation Booking API"><span class="dot"></span><span>API</span><span class="st-code">Waking up…</span></a>
+      <a class="btn sm primary" href="./Hasanul_Banna_Sifat_Resume.pdf" download>Resume <span class="arr">↓</span></a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+<div class="mmenu" id="mmenu">
+  <a href="#about">About</a><a href="#projects">Projects</a><a href="#stack">Stack</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+  <a href="./Hasanul_Banna_Sifat_Resume.pdf" download>Download resume ↓</a>
+</div>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero" data-sec="hero" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="rv">
+        <div class="avail"><i></i><span>Open to junior backend roles · internships · remote contract</span></div>
+        <div class="hello">// hi, I'm</div>
+        <h1>Hasanul Banna Sifat
+          <span class="role">Python Backend Engineer</span>
+        </h1>
+        <p class="lead">I build <b class="gt">secure, relational REST APIs</b> with <b>FastAPI</b>, <b>PostgreSQL</b> and <b>SQLAlchemy</b>. I came to backend from the booking desk at TripNet Aviation, so my flagship API models how ticketing really works, and it is live in production.</p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View projects <span class="arr">↓</span></a>
+          <a class="btn" href="https://aviation-booking-api-sifat.onrender.com/docs" target="_blank" rel="noopener">Live Swagger UI <span class="arr">↗</span></a>
+        </div>
+        <div class="socials">
+          <a href="https://github.com/sifat-dev-code" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">GH</a>
+          <a href="https://www.linkedin.com/in/hasanul-banna-sifat-483908433" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">in</a>
+          <a href="mailto:hbanna044@gmail.com" aria-label="Email" title="Email">@</a>
+          <a href="https://wa.me/8801626960692" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">WA</a>
+        </div>
+      </div>
+
+      <div class="photo rv" id="photo" style="--d:.12s">
+        <div class="pframe">
+          <div class="pin">
+            <img src="./profile.jpg" alt="Portrait of Hasanul Banna Sifat" width="800" height="1000" decoding="async">
+            <div class="fallback" aria-hidden="true">HBS<small>add profile.jpg</small></div>
+          </div>
+        </div>
+        <a class="fchip a status js-status" data-state="wait" href="https://aviation-booking-api-sifat.onrender.com/docs" target="_blank" rel="noopener" title="Live ping to the Aviation Booking API" style="padding:9px 13px"><span class="dot"></span><span>Aviation API</span><span class="st-code">Waking up…</span></a>
+        <div class="fchip b"><span style="color:var(--g2)">▸</span><span><b>FastAPI</b> · PostgreSQL</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marq" aria-hidden="true">
+    <div class="marq-track">
+      <span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span><span>Pydantic</span><span>JWT Auth</span><span>Django</span><span>Supabase</span><span>Render CI/CD</span><span>Git</span><span>GitHub</span><span>Swagger UI</span>
+      <span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span><span>Pydantic</span><span>JWT Auth</span><span>Django</span><span>Supabase</span><span>Render CI/CD</span><span>Git</span><span>GitHub</span><span>Swagger UI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" data-sec="about">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><span class="m">GET</span><span>/about</span></div>
+      <h2 class="title">Backend engineer who has worked the business side of the data.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="rv">
+        <div class="prose">
+          <p>I'm an early-career <b>Python backend engineer</b> focused on designing, securing and deploying relational REST APIs. My daily tools are <b>FastAPI</b> for the service layer, <b>PostgreSQL</b> for storage and <b>SQLAlchemy</b> for the ORM, with <b>Pydantic</b> validating every payload and <b>JWT</b> securing endpoints.</p>
+          <p>Since February 2026 I've worked at <b>TripNet Aviation</b>, handling aviation ticketing and B2B booking operations. Seeing how flights, passengers and tickets actually relate in daily work is what shaped the schema of my <b>Aviation Booking API</b>: I didn't guess at the domain, I'd been inside it.</p>
+          <p>I'm looking for a <b>junior backend role, internship, or remote contractor engagement</b> where I can keep building production APIs and learn from a strong team.</p>
+        </div>
+        <div class="stats">
+          <div class="card stat"><div class="n gt">2</div><div class="l">REST APIs built end to end</div></div>
+          <div class="card stat"><div class="n gt">1</div><div class="l">live in production on Render</div></div>
+          <div class="card stat"><div class="n gt">JWT</div><div class="l">auth with Bcrypt password hashing</div></div>
+        </div>
+      </div>
+      <div class="rv" style="--d:.1s">
+        <div class="term" aria-label="Terminal summary">
+          <div class="term-bar"><i></i><i></i><i></i><span>~/sifat — zsh</span></div>
+          <div class="term-body" id="termBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" data-sec="projects">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><span class="m">GET</span><span>/projects</span></div>
+      <h2 class="title">Built, secured and deployed.</h2>
+      <p class="sub">Two production-style REST APIs. The flagship is live, so you can open its Swagger UI and call it yourself.</p>
+    </div>
+
+    <!-- Flagship -->
+    <article class="card gb proj rv">
+      <div class="proj-in">
+        <div class="proj-top">
+          <div class="proj-title">
+            <h3>Aviation Booking System REST API</h3>
+            <span class="badge live">● LIVE IN PRODUCTION</span>
+          </div>
+          <div class="proj-actions">
+            <a class="btn sm primary" href="https://aviation-booking-api-sifat.onrender.com/docs" target="_blank" rel="noopener">Swagger UI <span class="arr">↗</span></a>
+            <a class="btn sm" href="https://github.com/sifat-dev-code/aviation-booking-api" target="_blank" rel="noopener">Source <span class="arr">↗</span></a>
+          </div>
+        </div>
+        <p class="desc">A relational API for flights, passengers and ticket bookings. Its data model comes straight from the ticketing workflows I handle at TripNet Aviation.</p>
+
+        <div class="flow" aria-label="Architecture: Client to FastAPI to Pydantic to SQLAlchemy to PostgreSQL on Supabase, deployed on Render">
+          <div class="fnode">Client<small>Swagger / HTTP</small></div><div class="wire"><i></i></div>
+          <div class="fnode">FastAPI<small>routers · 404/400 handlers</small></div><div class="wire"><i style="--d:.5s"></i></div>
+          <div class="fnode">Pydantic<small>payload validation</small></div><div class="wire"><i style="--d:1s"></i></div>
+          <div class="fnode">SQLAlchemy<small>ORM models</small></div><div class="wire"><i style="--d:1.5s"></i></div>
+          <div class="fnode">PostgreSQL<small>Supabase · deployed on Render</small></div>
+        </div>
+
+        <ul class="hl">
+          <li>Modeled relational tables linking <b style="color:var(--text);font-weight:600">Flights</b> and <b style="color:var(--text);font-weight:600">Passengers</b> through <b style="color:var(--text);font-weight:600">Bookings</b>.</li>
+          <li>Full CRUD (POST, GET, PUT, DELETE) with strict Pydantic validation and custom HTTP 404 / 400 error responses.</li>
+          <li>Resolved cloud PostgreSQL IPv4/IPv6 transaction-pooling issues for production stability, with automated CI/CD deployment on Render.</li>
+        </ul>
+
+        <div class="console" id="console">
+          <div class="con-tabs" role="tablist" aria-label="Request examples">
+            <button class="con-tab" role="tab" data-i="0" data-m="POST" aria-selected="true"><b>POST</b>/bookings/</button>
+            <button class="con-tab" role="tab" data-i="1" data-m="PUT" aria-selected="false"><b>PUT</b>/bookings/{booking_id}</button>
+            <button class="con-tab" role="tab" data-i="2" data-m="GET" aria-selected="false"><b>GET</b>404 case</button>
+            <button class="con-tab" role="tab" data-i="3" data-m="POST" aria-selected="false"><b>POST</b>400 case</button>
+          </div>
+          <div class="con-grid">
+            <div class="con-pane">
+              <div class="pane-bar"><span>Request</span><span class="acts"><button class="mini" id="copyCurl" type="button">Copy cURL</button><button class="mini send" id="sendReq" type="button">Send ▸</button></span></div>
+<pre id="reqOut"></pre>
+            </div>
+            <div class="con-pane">
+              <div class="pane-bar"><span>Response</span><span class="acts"><span class="rchip" id="respChip">200 OK</span><span class="rchip sim" id="respMs">— ms</span></span></div>
+<pre id="respOut"></pre>
+            </div>
+          </div>
+          <div class="con-foot">
+            <span>Simulated preview · illustrative payloads · no live data is touched</span>
+            <a href="https://aviation-booking-api-sifat.onrender.com/docs" target="_blank" rel="noopener">Test live on Swagger ↗</a>
+          </div>
+        </div>
+
+        <div class="chips" style="margin-top:26px">
+          <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span><span class="chip">SQLAlchemy</span><span class="chip">Pydantic</span><span class="chip">Render</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- CV Management -->
+    <article class="card proj rv" style="--d:.05s">
+      <div class="sec-proj">
+        <div class="proj-top">
+          <div class="proj-title">
+            <h3>CV Management REST API</h3>
+            <span class="badge">AUTH · JWT</span>
+          </div>
+          <!-- When you have a repo or live URL, add:
+          <div class="proj-actions"><a class="btn sm" href="YOUR_REPO_URL" target="_blank" rel="noopener">Source <span class="arr">↗</span></a></div> -->
+        </div>
+        <p class="desc" style="margin-bottom:22px">A secure API for managing user profiles and dynamic CV data.</p>
+        <div class="flow" aria-label="Auth flow: register, hash with Bcrypt, login, receive JWT, call protected routes">
+          <div class="fnode">Register<small>Pydantic-validated</small></div><div class="wire"><i></i></div>
+          <div class="fnode">Bcrypt hash<small>Passlib</small></div><div class="wire"><i style="--d:.6s"></i></div>
+          <div class="fnode">Login<small>verify credentials</small></div><div class="wire"><i style="--d:1.2s"></i></div>
+          <div class="fnode">JWT<small>access token</small></div><div class="wire"><i style="--d:1.8s"></i></div>
+          <div class="fnode">Protected routes<small>profile · CV data</small></div>
+        </div>
+        <ul class="hl">
+          <li>Engineered a RESTful API for user profiles and resume data with strict type validation via Pydantic.</li>
+          <li>Implemented JWT-based authentication and stored credentials as Bcrypt hashes using Passlib.</li>
+          <li>Migrated the database from local SQLite to a managed cloud PostgreSQL instance.</li>
+        </ul>
+        <div class="chips">
+          <span class="chip">FastAPI</span><span class="chip">PostgreSQL</span><span class="chip">SQLAlchemy</span><span class="chip">JWT</span><span class="chip">Passlib (Bcrypt)</span><span class="chip">Render</span>
+        </div>
+      </div>
+    </article>
+
+    <a class="more rv" href="https://github.com/sifat-dev-code/Python-Mini-Projects" target="_blank" rel="noopener" style="--d:.1s">
+      <span class="k">Also on GitHub</span>
+      <span class="v">Python Mini Projects <small>OOP · File I/O · exception handling · CLI apps</small></span>
+      <span class="arr">↗</span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack" data-sec="stack">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><span class="m">GET</span><span>/stack</span></div>
+      <h2 class="title">The tools I build with.</h2>
+      <p class="sub">Grouped by what they do, not by how much I like them.</p>
+    </div>
+    <div class="stack">
+      <div class="card grp rv"><div class="ic">py</div><h3>Languages</h3><p class="d">Core logic and data queries</p><div class="chips"><span class="chip">Python</span><span class="chip">SQL</span></div></div>
+      <div class="card grp rv" style="--d:.06s"><div class="ic">fa</div><h3>Frameworks</h3><p class="d">Service layer and routing</p><div class="chips"><span class="chip">FastAPI</span><span class="chip">Django</span></div></div>
+      <div class="card grp rv" style="--d:.12s"><div class="ic">db</div><h3>Databases &amp; ORM</h3><p class="d">Relational modeling and validation</p><div class="chips"><span class="chip">PostgreSQL (Supabase)</span><span class="chip">SQLite</span><span class="chip">SQLAlchemy ORM</span><span class="chip">Pydantic</span></div></div>
+      <div class="card grp w3 rv"><div class="ic">jw</div><h3>Security &amp; Auth</h3><p class="d">Protecting users and endpoints</p><div class="chips"><span class="chip">JWT Authentication</span><span class="chip">Passlib (Bcrypt hashing)</span></div></div>
+      <div class="card grp w3 rv" style="--d:.06s"><div class="ic">ci</div><h3>DevOps &amp; Tools</h3><p class="d">Shipping and documenting APIs</p><div class="chips"><span class="chip">Render (CI/CD auto-deploy)</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Swagger UI / OpenAPI</span><span class="chip">RESTful architecture</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" data-sec="experience">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="eyebrow"><span class="m">GET</span><span>/experience</span></div>
+      <h2 class="title">From aviation operations to backend engineering.</h2>
+    </div>
+    <div class="xp-grid">
+      <div class="tl rv">
+        <div class="tl-item now">
+          <div class="tl-when">Sep 2026 — Present</div>
+          <h3>Python Backend Developer <span>· Self-employed (open source)</span></h3>
+          <p>Designing and deploying production REST APIs with FastAPI and cloud PostgreSQL.</p>
+        </div>
+        <div class="tl-item now">
+          <div class="tl-when">Feb 2026 — Present</div>
+          <h3>Operations &amp; Marketing Executive <span>· TripNet Aviation</span></h3>
+          <p>Hands-on aviation ticketing and B2B booking operations. I translated those real workflows into the relational database schema behind the Aviation Booking API.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">2024 — Expected 2027</div>
+          <h3>Diploma in Computer Science &amp; Technology (CST) <span>· Dhaka Polytechnic Institute</span></h3>
+          <p>Expected graduation: 2027.</p>
+        </div>
+        <div class="tl-item">
+          <div class="tl-when">2023</div>
+          <h3>Secondary School Certificate (SSC) <span>· Narayanganj Textile Vocational Institute</span></h3>
+          <p>GPA 5.00 / 5.00.</p>
+        </div>
+      </div>
+
+      <div class="side rv" style="--d:.1s">
+        <div class="card now-card">
+          <div class="mini-card" style="padding:0"><div class="k">Currently building</div></div>
+          <p>Implementing <b style="color:var(--text)">JWT role-based access control (RBAC)</b> and <b style="color:var(--text)">Pytest unit testing</b> for the Aviation Booking API.</p>
+        </div>
+        <div class="card mini-card"><div class="k">Leadership</div><h4>Institute Representative</h4><p>Volunteer for Bangladesh · Dhaka District South</p></div>
+        <div class="card mini-card"><div class="k">Leadership · 2025</div><h4>Campus Ambassador</h4><p>English Carnival Bangladesh</p></div>
+        <div class="card mini-card"><div class="k">Languages</div><h4>English (fluent) · Bangla (native)</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" data-sec="contact">
+  <div class="wrap">
+    <div class="cta-card rv">
+      <div class="eyebrow"><span class="m post">POST</span><span>/contact</span></div>
+      <h2>Let's build something <span class="gt">reliable</span> together.</h2>
+      <p>I'm open to junior backend roles, internships and remote contractor work. The fastest way to reach me is email or WhatsApp.</p>
+      <div class="cgrid">
+        <a class="cbtn resume" href="./Hasanul_Banna_Sifat_Resume.pdf" download>
+          <span class="c-l"><span class="c-k">Resume · PDF</span><span class="c-v">Download resume</span></span><span class="arr">↓</span>
+        </a>
+        <a class="cbtn" href="mailto:hbanna044@gmail.com"><span class="c-l"><span class="c-k">Email</span><span class="c-v">hbanna044@gmail.com</span></span><span class="arr">↗</span></a>
+        <button class="cbtn copy" id="copyEmail" type="button" data-copy="hbanna044@gmail.com"><span class="c-l"><span class="c-k">Clipboard</span><span class="c-v">Copy email address</span></span><span class="c-act">copy</span></button>
+        <a class="cbtn" href="https://wa.me/8801626960692" target="_blank" rel="noopener"><span class="c-l"><span class="c-k">Phone / WhatsApp</span><span class="c-v">+880 1626 960692</span></span><span class="arr">↗</span></a>
+        <a class="cbtn" href="https://github.com/sifat-dev-code" target="_blank" rel="noopener"><span class="c-l"><span class="c-k">GitHub</span><span class="c-v">sifat-dev-code</span></span><span class="arr">↗</span></a>
+        <a class="cbtn" href="https://www.linkedin.com/in/hasanul-banna-sifat-483908433" target="_blank" rel="noopener"><span class="c-l"><span class="c-k">LinkedIn</span><span class="c-v">hasanul-banna-sifat</span></span><span class="arr">↗</span></a>
+      </div>
+      <div class="loc">Narayanganj, Dhaka, Bangladesh (UTC+6) · Open to remote</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Hasanul Banna Sifat</span>
+    <span>Hand-built with HTML, CSS and vanilla JS · no trackers</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  document.documentElement.classList.add('js');
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- helpers ---------- */
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function hl(json){
+    return esc(json).replace(/("(?:\\.|[^"\\])*")(\s*:)?|\b(true|false|null)\b|-?\b\d+(?:\.\d+)?\b/g, function(m,str,colon,bool){
+      if(str){return colon ? '<span class="j-k">'+str+'</span>'+colon : '<span class="j-s">'+str+'</span>';}
+      if(bool){return '<span class="j-b">'+m+'</span>';}
+      return '<span class="j-n">'+m+'</span>';
+    });
+  }
+  function copyText(text, done){
+    function fb(){
+      var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');
+      ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');done(true);}catch(e){done(false);}document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && window.isSecureContext){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}
+  }
+
+  /* ---------- photo (optional embedded base64) ---------- */
+  /* Paste base64 between the quotes to embed your photo directly.
+     Mac/Linux: base64 -i profile.jpg | tr -d '\n'
+     Windows PowerShell: [Convert]::ToBase64String([IO.File]::ReadAllBytes("profile.jpg")) */
+  var PHOTO_B64 = "";
+  var photo = document.getElementById('photo');
+  var img = photo.querySelector('img');
+  if(PHOTO_B64){ img.src = 'data:image/jpeg;base64,' + PHOTO_B64; }
+  img.addEventListener('error', function(){ photo.classList.add('noimg'); });
+  if(img.complete && img.naturalWidth === 0){ photo.classList.add('noimg'); }
+
+  /* ---------- nav: scrolled state, progress, mobile menu ---------- */
+  var nav = document.getElementById('nav'), bar = document.getElementById('progress');
+  var ticking = false;
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    nav.classList.toggle('scrolled', y > 12);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0) + ')';
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
+  onScroll();
+  var burger = document.getElementById('burger'), mmenu = document.getElementById('mmenu');
+  function closeMenu(){ burger.classList.remove('open'); mmenu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click', function(){
+    var o = !mmenu.classList.contains('open');
+    mmenu.classList.toggle('open', o); burger.classList.toggle('open', o); burger.setAttribute('aria-expanded', o ? 'true':'false');
+  });
+  mmenu.addEventListener('click', function(e){ if(e.target.tagName === 'A'){ closeMenu(); } });
+
+  /* ---------- live status ping ---------- */
+  var HOST = 'https://aviation-booking-api-sifat.onrender.com';
+  var statusEls = Array.prototype.slice.call(document.querySelectorAll('.js-status'));
+  function setStatus(state, text, title){
+    statusEls.forEach(function(el){
+      el.setAttribute('data-state', state);
+      var c = el.querySelector('.st-code'); if(c){ c.textContent = text; }
+      if(title){ el.title = title; }
+    });
+  }
+  function ping(){
+    var t0 = performance.now();
+    var slow = setTimeout(function(){ setStatus('wait','Waking up…','Render free tier is cold-starting the service'); }, 2500);
+    setStatus('wait','Pinging…','Contacting the live API');
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var kill = setTimeout(function(){ if(ctrl){ ctrl.abort(); } }, 90000);
+    fetch(HOST + '/docs?ping=' + Date.now(), {mode:'no-cors', cache:'no-store', signal: ctrl ? ctrl.signal : undefined})
+      .then(function(){
+        clearTimeout(slow); clearTimeout(kill);
+        setStatus('ok','200 OK · ' + Math.round(performance.now() - t0) + 'ms','Reachable. Click to open the live Swagger UI');
+      })
+      .catch(function(){
+        clearTimeout(slow); clearTimeout(kill);
+        setStatus('err','Unreachable','Could not reach the API right now. Click to try Swagger directly');
+      });
+  }
+  ping();
+  setInterval(function(){ if(!document.hidden){ ping(); } }, 5 * 60 * 1000);
+
+  /* ---------- request console (simulated) ---------- */
+  var CASES = [
+    {method:'POST', path:'/bookings/', body:{flight_id:12, passenger_id:7, seat_number:"14A"}, status:200, text:'200 OK',
+     resp:{id:101, flight_id:12, passenger_id:7, seat_number:"14A", status:"confirmed"}},
+    {method:'PUT', path:'/bookings/101', body:{seat_number:"15C"}, status:200, text:'200 OK',
+     resp:{id:101, flight_id:12, passenger_id:7, seat_number:"15C", status:"confirmed"}},
+    {method:'GET', path:'/bookings/9999', body:null, status:404, text:'404 Not Found',
+     resp:{detail:"Booking not found"}},
+    {method:'POST', path:'/bookings/', body:{flight_id:12, passenger_id:7, seat_number:"14A"}, status:400, text:'400 Bad Request',
+     resp:{detail:"Seat 14A is already booked on this flight"}}
+  ];
+  var cur = 0, busy = false;
+  var reqOut = document.getElementById('reqOut'), respOut = document.getElementById('respOut');
+  var respChip = document.getElementById('respChip'), respMs = document.getElementById('respMs');
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.con-tab'));
+  function curl(c){
+    var p = ['curl -X ' + c.method + ' "' + HOST + c.path + '"'];
+    if(c.body){ p.push("  -H 'Content-Type: application/json'"); p.push("  -d '" + JSON.stringify(c.body) + "'"); }
+    return p.join(' \\\n');
+  }
+  function curlHtml(c){
+    var o = '<span class="c-cmd">curl</span> <span class="c-flag">-X</span> ' + c.method + ' <span class="c-url">"' + esc(HOST + c.path) + '"</span>';
+    if(c.body){ o += ' \\\n  <span class="c-flag">-H</span> <span class="c-url">\'Content-Type: application/json\'</span> \\\n  <span class="c-flag">-d</span> <span class="c-url">\'' + esc(JSON.stringify(c.body)) + '\'</span>'; }
+    return o;
+  }
+  function renderReq(){ reqOut.innerHTML = curlHtml(CASES[cur]); }
+  function renderResp(ms){
+    var c = CASES[cur];
+    respOut.innerHTML = hl(JSON.stringify(c.resp, null, 2));
+    respChip.textContent = c.text;
+    respChip.className = 'rchip ' + (c.status < 400 ? 'ok' : 'err');
+    respMs.textContent = ms + ' ms';
+  }
+  function send(){
+    if(busy) return; busy = true;
+    respOut.innerHTML = '<span style="color:var(--dim)">sending…</span>';
+    respChip.textContent = '…'; respChip.className = 'rchip sim'; respMs.textContent = '— ms';
+    var ms = 22 + Math.floor(Math.random() * 40);
+    setTimeout(function(){ renderResp(ms); busy = false; }, 280);
+  }
+  function selectTab(i){
+    cur = i;
+    tabs.forEach(function(t, k){ t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    renderReq(); send();
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ selectTab(+t.getAttribute('data-i')); }); });
+  document.getElementById('sendReq').addEventListener('click', send);
+  var copyCurlBtn = document.getElementById('copyCurl');
+  copyCurlBtn.addEventListener('click', function(){
+    copyText(curl(CASES[cur]), function(ok){
+      copyCurlBtn.textContent = ok ? 'Copied ✓' : 'Copy failed';
+      setTimeout(function(){ copyCurlBtn.textContent = 'Copy cURL'; }, 1400);
+    });
+  });
+  renderReq(); renderResp(34);
+
+  /* ---------- copy email ---------- */
+  var ce = document.getElementById('copyEmail');
+  ce.addEventListener('click', function(){
+    copyText(ce.getAttribute('data-copy'), function(ok){
+      var a = ce.querySelector('.c-act');
+      ce.classList.toggle('done', ok); a.textContent = ok ? 'copied ✓' : 'failed';
+      setTimeout(function(){ ce.classList.remove('done'); a.textContent = 'copy'; }, 1600);
+    });
+  });
+
+  /* ---------- typed terminal ---------- */
+  var termBody = document.getElementById('termBody');
+  var LINES = [
+    {c:'whoami', o:'hasanul-banna-sifat · python backend engineer'},
+    {c:'cat stack.txt', o:'python  fastapi  postgresql  sqlalchemy  pydantic  jwt'},
+    {c:'ls projects/', o:'aviation-booking-api/   cv-management-api/'},
+    {c:'echo $STATUS', o:'open to junior roles, internships &amp; remote contract'}
+  ];
+  var termStarted = false;
+  function runTerm(){
+    if(termStarted) return; termStarted = true;
+    var i = 0;
+    function line(){
+      if(i >= LINES.length){ termBody.insertAdjacentHTML('beforeend','<span class="p">~/sifat $ </span><span class="cur"></span>'); return; }
+      var L = LINES[i];
+      var row = document.createElement('div');
+      row.innerHTML = '<span class="p">~/sifat $ </span><span class="cmd"></span>';
+      termBody.appendChild(row);
+      var cmd = row.querySelector('.cmd'), k = 0;
+      function type(){
+        if(reduce){ cmd.textContent = L.c; k = L.c.length; }
+        if(k < L.c.length){ cmd.textContent = L.c.slice(0, ++k); setTimeout(type, 34 + Math.random() * 30); }
+        else {
+          var o = document.createElement('span'); o.className = 'o'; o.innerHTML = L.o; termBody.appendChild(o);
+          i++; setTimeout(line, reduce ? 0 : 380);
+        }
+      }
+      type();
+    }
+    line();
+  }
+
+  /* ---------- reveal, scroll spy, spotlight ---------- */
+  var secLinks = document.querySelectorAll('.links a');
+  function setActive(id){ secLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-sec') === id); }); }
+  if('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ setActive(e.target.getAttribute('data-sec')); } });
+    }, {rootMargin:'-40% 0px -55% 0px'});
+    document.querySelectorAll('section[data-sec]').forEach(function(s){ spy.observe(s); });
+    var rv = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rv.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:0.06});
+    document.querySelectorAll('.rv').forEach(function(el){ rv.observe(el); });
+    var tObs = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ runTerm(); tObs.disconnect(); } });
+    }, {threshold:0.35});
+    tObs.observe(document.querySelector('.term'));
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+    runTerm();
+  }
+  document.addEventListener('pointermove', function(e){
+    var t = e.target.closest && e.target.closest('.card'); if(!t) return;
+    var r = t.getBoundingClientRect();
+    t.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    t.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
